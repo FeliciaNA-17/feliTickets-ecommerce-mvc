@@ -1,12 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
-
+using feliTickets.Data.Base;
 
 namespace feliTickets.Models
 {
-    public class Actor
+    public class Actor:IEntityBase
     {
-        
+        public Actor()
+        {
+            Actors_Movies = new List<Actor_Movie>();
+        }
+
         [Key]
         public int Id { get; set; }
 

@@ -1,9 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using feliTickets.Data.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace feliTickets.Models
 {
-    public class Producer
+    public class Producer:IEntityBase
     {
+        public Producer() { 
+            Movies = new List<Movie>();
+        }
 
         [Key]
         public int Id { get; set; }

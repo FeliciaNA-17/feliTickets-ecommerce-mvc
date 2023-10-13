@@ -16,8 +16,8 @@ namespace feliTickets.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var data = await _service.GetAllAsync();
-            return View(data);
+            var AllActors = await _service.GetAllAsync();
+            return View(AllActors);
         }
 
         //Get: Actors/Create
@@ -29,10 +29,8 @@ namespace feliTickets.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([Bind("FullName,ProfilePictureURL,Bio")] Actor actor)
         {
-            /**if (!ModelState.IsValid)
-            {
-                return View(actor); 
-            }**/
+            if (!ModelState.IsValid) return View(actor);
+
             await _service.AddAsync(actor);
             return RedirectToAction(nameof(Index));
         }
@@ -58,10 +56,7 @@ namespace feliTickets.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, [Bind("Id,FullName,ProfilePictureURL,Bio")] Actor actor)
         {
-            /**if (!ModelState.IsValid)
-            {
-                return View(actor);
-            }**/
+            if (!ModelState.IsValid) return View(actor);
             await _service.UpdateAsync(id, actor);
             return RedirectToAction(nameof(Index));
         }

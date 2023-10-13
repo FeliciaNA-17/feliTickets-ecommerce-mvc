@@ -3,8 +3,10 @@ using feliTickets.Models;
 
 namespace feliTickets.Data.Services
 {
-    public interface IActorsService:IEntityBaseRepository<Actor>
-    {
+    public interface ICinemasService : IEntityBaseRepository<Cinema>
+        {
 
-    }
+        }
+    
 }
+
