@@ -1,9 +1,10 @@
-﻿using feliTickets.Data.Enums;
+﻿using feliTickets.Data.Base;
+using feliTickets.Data.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace feliTickets.Models
 {
-    public class Movie
+    public class Movie:IEntityBase
     {
         public int Id { get; set; }
 

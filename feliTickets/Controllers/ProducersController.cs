@@ -77,7 +77,7 @@ namespace feliTickets.Controllers
 
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var producerDetails = await _service.GetByIdAsync(id);

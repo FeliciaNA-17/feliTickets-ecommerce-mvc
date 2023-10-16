@@ -54,7 +54,7 @@ namespace feliTickets.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("Logo,Name,Description")] Cinema cinema)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Logo,Name,Description")] Cinema cinema)
         {
             if (!ModelState.IsValid) return View(cinema);
             await _service.UpdateAsync(id, cinema);
@@ -73,8 +73,8 @@ namespace feliTickets.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var cinemaDetails = await _service.GetByIdAsync(id);
-            if (cinemaDetails == null) return View("NotFound");
+            
+            
 
             await _service.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
