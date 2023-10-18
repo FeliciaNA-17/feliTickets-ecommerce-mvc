@@ -6,6 +6,11 @@ namespace feliTickets.Models
 {
     public class Movie:IEntityBase
     {
+        public Movie()
+        {
+            Actors_Movies = new List<Actor_Movie>();
+        }
+
         public int Id { get; set; }
 
         public string Name { get; set; }
