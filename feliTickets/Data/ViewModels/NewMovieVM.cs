@@ -16,7 +16,7 @@ namespace feliTickets.Models
         [Required(ErrorMessage = "Description is required")]
         public string Description { get; set; }
 
-        [Display(Name = "Price in Rp")]
+        [Display(Name = "Price in $")]
         [Required(ErrorMessage = "Price is required")]
         public double Price { get; set; }
 

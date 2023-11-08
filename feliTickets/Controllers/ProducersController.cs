@@ -1,11 +1,14 @@
 ﻿using feliTickets.Data;
 using feliTickets.Data.Services;
+using feliTickets.Data.Static;
 using feliTickets.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace feliTickets.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
     public class ProducersController : Controller
     {
         private readonly IProducersService _service;
@@ -15,6 +18,7 @@ namespace feliTickets.Controllers
             _service = service;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var allProducers = await _service.GetAllAsync();
@@ -37,6 +41,7 @@ namespace feliTickets.Controllers
         }
 
         //Get : Producers/Details/1
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var producerDetails = await _service.GetByIdAsync(id);

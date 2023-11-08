@@ -3,9 +3,12 @@ using feliTickets.Data.Services;
 using Microsoft.AspNetCore.Mvc;
 using feliTickets.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using feliTickets.Data.Static;
 
 namespace feliTickets.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
     public class CinemasController : Controller
     {
         private readonly ICinemasService _service;
@@ -14,6 +17,8 @@ namespace feliTickets.Controllers
         {
             _service = service;
         }
+
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var allCinema = await _service.GetAllAsync();
@@ -36,6 +41,7 @@ namespace feliTickets.Controllers
         }
 
         //Get: Cinema/Details/1
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var cinemaDetails = await _service.GetByIdAsync(id);

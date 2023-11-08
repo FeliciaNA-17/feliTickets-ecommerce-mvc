@@ -1,19 +1,25 @@
 ﻿using feliTickets.Data;
 using feliTickets.Data.Services;
+using feliTickets.Data.Static;
 using feliTickets.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace feliTickets.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
     public class ActorsController : Controller
     {
+        
         private readonly IActorsService _service;
 
         public ActorsController(IActorsService service)
         {
             _service = service;
         }
+
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var AllActors = await _service.GetAllAsync();
@@ -36,6 +42,7 @@ namespace feliTickets.Controllers
         }
 
         //Get: Actors/Details/1
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var actorDetails = await _service.GetByIdAsync(id);
